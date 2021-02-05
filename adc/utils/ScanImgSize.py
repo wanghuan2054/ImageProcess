@@ -9,7 +9,11 @@
 """
 import cv2
 import  os
-imagePath = r"C:\Users\wanghuan\Desktop\12345";
+
+# 路径名中不能出现中文
+imagePath = r"C:\Users\10024908\Desktop\L691J"
+
+# IMAGESROOTPATH = r"E:\任务+项目\ADC\20201102\测试集\处理后标签\L691J"
 
 def is_img(ext):
  ext = ext.lower()
@@ -23,6 +27,8 @@ def is_img(ext):
   return True
  else:
   return False
+view_size = dict()
+index = 0
 # 遍历指定目录集
 for x in os.listdir(imagePath):
  # 获取文件后缀名
@@ -34,4 +40,15 @@ for x in os.listdir(imagePath):
    # height(rows) of image
    # width(colums) of image
    # the pixels value is made up of three primary colors
-   print(img.shape[0] , img.shape[1])
+
+   # size = str(img.shape[0])+"_"+str(img.shape[1])
+   print(os.path.join(imagePath,x))
+   print( str(img.shape[0])+ " " + str(img.shape[1]))
+   # index = index + 1
+   # print(view_size.keys())
+   # if size not in view_size.keys():
+   #    view_size[size] = 1
+   # else:
+   #    view_size[size] = view_size[size] + 1
+
+# print(view_size)
