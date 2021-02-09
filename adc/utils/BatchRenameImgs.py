@@ -14,10 +14,11 @@ import math
 import shutil
 
 # 指定图片根目录
-IMAGESROOTPATH = r"C:\Users\10024908\Desktop\L691J"
+IMAGESROOTPATH = r"E:\任务+项目\ADC\ADC POC\训练测试图片\处理后测试集\原本标签\L490J"
 # IMAGESROOTPATH = r"E:\任务+项目\ADC\20201102\测试集\处理后标签\L691J"
+
 # 指定处理完后的图片存放目录
-TARGETIMAGESROOTPATH=IMAGESROOTPATH
+TARGETIMAGESROOTPATH=r"E:\任务+项目\ADC\ADC POC\训练测试图片\处理后测试集\处理后标签"
 
 # 现有图片规则，按照下划线分割，倒数第4位是subcode
 SUBCODE_POSITION = 4
@@ -102,13 +103,9 @@ def splitImgsIntoDirs() :
         # 图片名全部预处理转小写
         img_name = img_name.lower()
         # replace_name = img_name.replace(img_name.split("_")[SUBCODE_POSITION],REPLACE_STR)
-        # print("原始串 ： " + img_name)
-        # print("替换串 ： " + replace_name)
 
         #  每张图片下划线切分后的长度
         # imgNameLength =  img_name.split("_")
-        # print(imgNameLength)
-        # print(imgNameLength[-SUBCODE_POSITION])
 
         absPath = os.path.join(IMAGESROOTPATH, img_name)
         # 获取文件名 , 不带后缀
@@ -127,7 +124,7 @@ def splitImgsIntoDirs() :
 
             # 区分文件的名字和后缀:
             oldfilename = os.path.join(IMAGESROOTPATH, img_name)
-            newfilename = os.path.join(os.path.join(TARGETIMAGESROOTPATH,IMAGESROOTPATH.split('\\')[-1]+'-part'+str(counter%batchs)), replace_name)
+            newfilename = os.path.join(os.path.join(TARGETIMAGESROOTPATH,IMAGESROOTPATH.split('\\')[-1]), replace_name)
 
             # 生成Excel 存储替换前图片名  替换后图片名  类标签
             singleImgList = [img_name ,replace_name , subcode]
@@ -145,14 +142,13 @@ def splitImgsIntoDirs() :
     df = pd.DataFrame(matrixList, columns=['source', 'target', 'label'])
     #
     # 保存excel到IMAGESROOTPATH 下
-    df.to_excel(os.path.join(IMAGESROOTPATH , IMAGESROOTPATH.split('\\')[-1]) + ".xlsx", index=False)
+    df.to_excel(os.path.join(TARGETIMAGESROOTPATH , IMAGESROOTPATH.split('\\')[-1]) + ".xlsx", index=False)
 
     print(code_dict)
 
 # 程序入口
 if __name__ == "__main__":
     print(getNumsPerBatch())
-
     starttime = datetime.datetime.now()
     splitImgsIntoDirs()
     endtime = datetime.datetime.now()
