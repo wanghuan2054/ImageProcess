@@ -93,7 +93,7 @@ SELECT /*t1.vendor , T.OPER_CODE ,*/
    ORDER BY REAL , prdict ;
 
 
-   -- 数之联 SD 混淆矩阵
+   -- 中科创达 SD 混淆矩阵
 SELECT /*t1.vendor , T.OPER_CODE ,*/
 /* T.ORIGIN_IMG,
  T.TARGET_IMG,*/
